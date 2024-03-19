@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-keeping-service
+  namespace: book-keeping-app
+spec:
+  type: ClusterIP
+  selector:
+    app: book-keeping-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+--- 

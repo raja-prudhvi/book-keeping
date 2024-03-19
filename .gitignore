@@ -1,0 +1,44 @@
+venv/
+
+# .gitignore for Python projects
+
+# Virtual environment
+venv/
+
+# Byte-compiled / optimized Python files
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# Logs
+*.log
+
+# Environment variable files
+.env
+
+*/.DS_Store
+
+kubernetes/db-credentials-secret.yaml
+kubernetes/.docker/*
+kubernetes/ghcr_secret.yaml
+
+
+istio-ingress-app/db-credentials-secret.yaml
+istio-ingress-app/.docker/*
+istio-ingress-app/ghcr_secret.yaml
+
+*keys.json
+*.drawio.bkp
+*.drawio.dtmp
+*.png*
+images/**/dist
+node_modules
+**/coverage/**
+/*.iml
+/.idea

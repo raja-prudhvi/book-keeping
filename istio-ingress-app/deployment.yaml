@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-keeping-app
+  namespace: book-keeping-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: book-keeping-app
+  template:
+    metadata:
+      labels:
+        app: book-keeping-app
+    spec:
+      containers:
+      - name: book-keeping-app
+        image: ghcr.io/{repo_name}/book-keeping:latest  # Corrected image path to use GHCR
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_PASSWORD
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_PORT
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_NAME
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "70m"
+          limits:
+            memory: "200Mi"
+            cpu: "100m"
+      imagePullSecrets:  # Added imagePullSecrets to allow Kubernetes to pull from the private GHCR
+      - name: ghcr-login-credentials

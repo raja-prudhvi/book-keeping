@@ -1,0 +1,8 @@
+# create a namespace for the book-keeping-app and label it with istio-injection: enabled
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: book-keeping-app
+  labels:
+    name: book-keeping-app
+    istio-injection: enabled

@@ -1,0 +1,20 @@
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bookkeeping-virtualservice
+  namespace: book-keeping-app
+spec:
+  hosts:
+  - bookkeeping.public.io
+  gateways:
+  - book-keeping-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:                                                    # service.namespace.svc.cluster.local
+        host: book-keeping-service.book-keeping-app.svc.cluster.local # The name of your Kubernetes Service for the bookkeeping app
+        port:
+          number: 80
